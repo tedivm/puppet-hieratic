@@ -24,6 +24,12 @@ f.close()
 
 hieratic_class += """\nclass hieratic (
   $global_enable = true,
+  $firewall_label = firewall,
+  $firewall_enabled = false,
+  $firewall_pre_label = firewall_pre,
+  $firewall_pre_enabled = false,
+  $firewall_post_label = firewall_post,
+  $firewall_post_enabled = false,
 """
 
 for puppet_type in puppet_types:
@@ -37,16 +43,25 @@ hieratic_class += ") {\n\n"
 for puppet_type in puppet_types:
   hieratic_class += typedef_tmpl.substitute(type=puppet_type) + "\n"
 
-hieratic_class += "}"
+hieratic_class += """
+  class { 'hieratic::firewall':
+    global_enable => $global_enable,
+    firewall_label => $firewall_label,
+    firewall_enabled => $firewall_enabled,
+    firewall_pre_label => $firewall_pre_label,
+    firewall_pre_enabled => $firewall_pre_enabled,
+    firewall_post_label => $firewall_post_label,
+    firewall_post_enabled => $firewall_post_enabled,
+  }
+
+}"""
 
 
 # puppet-lint only works on files, so we write it to temp and return the result.
 f = tempfile.NamedTemporaryFile()
 f.write(hieratic_class)
 devnull = open(os.devnull, 'w')
-subprocess.call(['puppet-lint',f.name,'--fix'],
-  stdout=devnull, stderr=devnull
-)
+subprocess.call(['puppet-lint',f.name,'--fix'], stdout=devnull, stderr=devnull )
 f.seek(0)
 hieratic_class = f.read()
 f.close()

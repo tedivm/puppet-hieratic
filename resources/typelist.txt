@@ -4,6 +4,7 @@ computers
 cron
 exec
 file
+file_line
 filebucket
 group
 host
@@ -49,5 +50,3 @@ yumrepo
 zfs
 zone
 zpool
-firewall
-file_line
