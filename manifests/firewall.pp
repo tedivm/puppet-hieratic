@@ -9,9 +9,6 @@ class hieratic::firewall (
 ) {
 
   if(defined('firewall') and ($firewall_enabled or $global_enable)) {
-    $firewall_config = hiera_hash($firewall_label, {})
-    create_resources(firewall, $firewall_config)
-
     resources { "firewall":
       purge => true
     }
@@ -21,23 +18,8 @@ class hieratic::firewall (
       require => Class['fw::pre'],
     }
 
-    class fw::pre {
-      Firewall {
-        require => undef,
-      }
-      if(defined('firewall') and ($firewall_pre_enabled or $global_enable)) {
-        create_resources(firewall, hiera_hash($firewall_pre_label, {}))
-      }
-    }
-
-    class fw::post {
-      Firewall {
-        before => undef,
-      }
-      if(defined('firewall') and ($firewall_post_enabled or $global_enable)) {
-        create_resources(firewall, hiera_hash($firewall_post_label, {}))
-      }
-    }
+    $firewall_config = hiera_hash($firewall_label, {})
+    create_resources(firewall, $firewall_config)
 
     class { ['fw::pre', 'fw::post']: }
   }
