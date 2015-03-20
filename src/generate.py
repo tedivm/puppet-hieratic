@@ -34,8 +34,6 @@ hieratic_class += """\nclass hieratic (
 
 for puppet_type in puppet_types:
   type_label = puppet_type
-  if type_label == 'class':
-    type_label = 'classes'
   hieratic_class += parameter_tmpl.substitute(type=puppet_type, type_label_default=type_label)
 
 hieratic_class += ") {\n\n"
