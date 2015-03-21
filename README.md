@@ -4,12 +4,18 @@
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
+2. [Supported Resources - What resources are supported by this module](#supported-resources)
 3. [Setup - The basics of getting started with hieratic](#setup)
     * [What hieratic affects](#what-hieratic-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with hieratic](#beginning-with-hieratic)
 4. [Usage - Configuration options and additional functionality](#usage)
+    * [Define Resources in Hiera](#define-resources-in-hiera)
+    * [Add Parameters to Resources in Hiera](#add-parameters-to-resources-in-hiera)
+    * [Change the Labels (or names) of Hiera Resources](#change-the-labels-or-names-of-hiera-resources)
+    * [Enabling Some Resources and not Others](#enabling-some-resources-and-not-others)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+    * [Parameters](#parameters)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
@@ -30,6 +36,7 @@ Hiera. This makes it possible to define all site configuration in Hiera.
 ## Supported Resources
 
 * [Puppet Resource Types](https://docs.puppetlabs.com/references/latest/type.html)
+* [Puppet Classes](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html)
 * [Firewall Module](https://forge.puppetlabs.com/puppetlabs/firewall), with the
   addition of "firewall_pre" and "firewall_post" for global defaults around the
   custom rules.
@@ -95,6 +102,7 @@ base ssh configuration with a secondary
 
 common.yaml:
 ```yaml
+class:
  'ssh':
     'server_options':
       Protocol: '2'
@@ -149,7 +157,6 @@ packages:
   iptraf: {}
 ```
 
-
 ### Enabling Some Resources and not Others
 
 By default Hieratic enables all resource types. Turning off "global_enable" lets
@@ -182,8 +189,6 @@ The only public facing class is "hieratic".
 * [*TYPE_label*]
     Defaults to the name of the type. This defines the top level hiera variable
     name to use when defining values of this type.
-
-
 
 ## Limitations
 
