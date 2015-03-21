@@ -1,37 +1,38 @@
 # == Class: hieratic
 #
-# Full description of class hieratic here.
+# Hieratic allows Puppet Resources to be created directly in Hiera.
 #
 # === Parameters
 #
-# Document parameters here.
+# [*global_enable*]
+#   Defaults to true. With this on all resources are exposed through Hiera.
+#   For granular control set this to false and manually enable specific resource
+#   types.
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*TYPE_enable*]
+#   Defaults to true. With this on all resources are exposed through Hiera.
 #
-# === Variables
+# [*TYPE_label*]
+#   Defaults to the name of the type. This defines the top level hiera variable
+#   name to use when defining values of this type.
 #
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
 #
 # === Examples
 #
+#  include hieratic
+#
 #  class { 'hieratic':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#    global_enable => false,
+#    class_enable => true,
+#    class_label => 'classes',
+#    file_enable => true,
 #  }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Robert Hafner <tedivm@tedivm.com>
 #
 # === Copyright
 #
-# Copyright 2015 Your name here, unless otherwise noted.
+# Copyright 2015 Robert Hafner
 #
