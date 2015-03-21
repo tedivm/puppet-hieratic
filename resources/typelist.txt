@@ -18,9 +18,7 @@ mount
 nagios_command
 nagios_contact
 nagios_contactgroup
-ngios_host
-nagios_hostdependency
-nagios_hosts
+nagios_host
 nagios_hostdependency
 nagios_hostescalation
 nagios_hostextinfo
