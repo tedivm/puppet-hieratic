@@ -15,65 +15,184 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+Hieratic allows Puppet Resources to be created directly in
+[Hiera](https://docs.puppetlabs.com/hiera/1/).
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+This incredibly meta module allows for the direct creation of resources using
+Hiera.
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module does, by itself, add any resources or change your systems. What it
+does is add a new way to configure systems by defining resources inside of
+Hiera. This makes it possible to define all site configuration in Hiera.
+
+## Supported Resources
+
+* [Puppet Resource Types](https://docs.puppetlabs.com/references/latest/type.html)
+* [Firewall Module](https://forge.puppetlabs.com/puppetlabs/firewall), with the
+  addition of "firewall_pre" and "firewall_post" for global defaults around the
+  custom rules.
 
 ## Setup
 
 ### What hieratic affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* Any supported resource can be modified with this module.
+* Most modules can be used by this module through the "class" resource.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+It's recommended that you enable ["deeper merge"](https://docs.puppetlabs.com/hiera/1/hierarchy.html)
+in Hiera and define a proper [hierarchy](https://docs.puppetlabs.com/hiera/1/hierarchy.html).
 
 ### Beginning with hieratic
 
-The very basic steps needed for a user to get the module up and running.
+Make sure to include hieratic in your main manifest.
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+```puppet
+include hieratic
+```
+
+At this point you can move away manifests and over to Hiera.
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+### Define Resources in Hiera
+
+Install Packages:
+```yaml
+package:
+  git: {}
+  subversion: {}
+  p7zip: {}
+  p7zip-full: {}
+  nmap: {}
+  ethstatus: {}
+  iptraf: {}
+```
+
+Setup Groups:
+```yaml
+group:
+  sudo:
+    name: 'sudo'
+    ensure: 'present'
+  admin:
+    name: 'admin'
+    ensure: 'present'
+```
+
+### Add Parameters to Resources in Hiera
+
+You can split configuration between files. For example, if you want to have a
+base ssh configuration with a secondary
+
+```yaml
+- "%{::virtual}"
+- "common"
+```
+
+common.yaml:
+```yaml
+ 'ssh':
+    'server_options':
+      Protocol: '2'
+      PermitRootLogin: 'no'
+      PubkeyAuthentication: 'yes'
+      PasswordAuthentication: 'no'
+      UsePAM: 'no'
+      Port:
+        - 5022
+      AllowGroups:
+        - admin
+```
+
+On systems running Vagrant we want to make sure that vagrant ssh will continue
+to work. This can be done using the following file when using Vagrant with
+VirtualBox.
+
+virtualbox.yaml:
+```yaml
+class:
+  'ssh':
+    storeconfigs_enabled: false
+    server_options:
+      Port:
+        - 22
+      AllowGroups:
+        - vagrant
+```
+
+
+### Change the Labels (or names) of Hiera Resources
+
+Each resource type has an associated label parameter that can be used to change
+how resources are grouped in Hiera. To refer to class resources as "classes"
+then change the "class_label" to "classes".
+
+```puppet
+class { 'hieratic':
+  class_label => 'classes',
+  package_label => 'packages',  
+}
+```
+
+```yaml
+packages:
+  git: {}
+  subversion: {}
+  p7zip: {}
+  p7zip-full: {}
+  nmap: {}
+  ethstatus: {}
+  iptraf: {}
+```
+
+
+### Enabling Some Resources and not Others
+
+By default Hieratic enables all resource types. Turning off "global_enable" lets
+resources get enabled on an individual basis. They are all disabled by default,
+and can be turned on by their respective "type_enable" parameters.
+
+To turn off all resources types and enable class and files-
+```puppet
+class { 'hieratic':
+  global_enable => false,
+  class_enable => true,
+  file_enable => true,
+}
+```
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+The only public facing class is "hieratic".
+
+### Parameters
+
+ [*global_enable*]
+   Defaults to true. With this on all resources are exposed through Hiera.
+   For granular control set this to false and manually enable specific resource
+   types.
+
+ [*TYPE_enable*]
+   Defaults to true. With this on all resources are exposed through Hiera.
+
+ [*TYPE_label*]
+   Defaults to the name of the type. This defines the top level hiera variable
+   name to use when defining values of this type.
+
+
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module works with any version of Puppet that has Hiera installed, on any
+operating system.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+This module uses a generator to build the code to support all of the resource
+types. If you're looking to add a new resource type simply open a pull request
+adding it to [this file](https://github.com/tedivm/puppet-hieratic/blob/master/resources/typelist.txt)
+and updating the supported modules list.

@@ -2,7 +2,7 @@
   "name": "tedivm-hieratic",
   "version": "0.1.0",
   "author": "tedivm",
-  "summary": "Define Puppet Resources in Hiera",
+  "summary": "Hieratic allows Puppet Resources to be created directly in Hiera.",
   "license": "MIT",
   "source": "https://github.com/tedivm/puppet-hieratic",
   "project_page": "https://github.com/tedivm/puppet-hieratic",
