@@ -85,8 +85,8 @@ class hieratic (
   $nagios_contact_enabled = false,
   $nagios_contactgroup_label = 'nagios_contactgroup',
   $nagios_contactgroup_enabled = false,
-  $nagios_hostdependency_label = 'nagios_hostdependency',
-  $nagios_hostdependency_enabled = false,
+  $nagios_host_label = 'nagios_host',
+  $nagios_host_enabled = false,
   $nagios_hostdependency_label = 'nagios_hostdependency',
   $nagios_hostdependency_enabled = false,
   $nagios_hostescalation_label = 'nagios_hostescalation',
@@ -95,8 +95,6 @@ class hieratic (
   $nagios_hostextinfo_enabled = false,
   $nagios_hostgroup_label = 'nagios_hostgroup',
   $nagios_hostgroup_enabled = false,
-  $nagios_hosts_label = 'nagios_hosts',
-  $nagios_hosts_enabled = false,
   $nagios_service_label = 'nagios_service',
   $nagios_service_enabled = false,
   $nagios_servicedependency_label = 'nagios_servicedependency',
@@ -109,8 +107,6 @@ class hieratic (
   $nagios_servicegroup_enabled = false,
   $nagios_timeperiod_label = 'nagios_timeperiod',
   $nagios_timeperiod_enabled = false,
-  $ngios_host_label = 'ngios_host',
-  $ngios_host_enabled = false,
   $notify_label = 'notify',
   $notify_enabled = false,
   $package_label = 'package',
@@ -251,9 +247,9 @@ class hieratic (
     create_resources('nagios_contactgroup', $nagios_contactgroup_config)
   }
 
-  if(defined('nagios_hostdependency') and ($nagios_hostdependency_enabled or $global_enable)) {
-    $nagios_hostdependency_config = hiera_hash($nagios_hostdependency_label, {})
-    create_resources('nagios_hostdependency', $nagios_hostdependency_config)
+  if(defined('nagios_host') and ($nagios_host_enabled or $global_enable)) {
+    $nagios_host_config = hiera_hash($nagios_host_label, {})
+    create_resources('nagios_host', $nagios_host_config)
   }
 
   if(defined('nagios_hostdependency') and ($nagios_hostdependency_enabled or $global_enable)) {
@@ -274,11 +270,6 @@ class hieratic (
   if(defined('nagios_hostgroup') and ($nagios_hostgroup_enabled or $global_enable)) {
     $nagios_hostgroup_config = hiera_hash($nagios_hostgroup_label, {})
     create_resources('nagios_hostgroup', $nagios_hostgroup_config)
-  }
-
-  if(defined('nagios_hosts') and ($nagios_hosts_enabled or $global_enable)) {
-    $nagios_hosts_config = hiera_hash($nagios_hosts_label, {})
-    create_resources('nagios_hosts', $nagios_hosts_config)
   }
 
   if(defined('nagios_service') and ($nagios_service_enabled or $global_enable)) {
@@ -309,11 +300,6 @@ class hieratic (
   if(defined('nagios_timeperiod') and ($nagios_timeperiod_enabled or $global_enable)) {
     $nagios_timeperiod_config = hiera_hash($nagios_timeperiod_label, {})
     create_resources('nagios_timeperiod', $nagios_timeperiod_config)
-  }
-
-  if(defined('ngios_host') and ($ngios_host_enabled or $global_enable)) {
-    $ngios_host_config = hiera_hash($ngios_host_label, {})
-    create_resources('ngios_host', $ngios_host_config)
   }
 
   if(defined('notify') and ($notify_enabled or $global_enable)) {
@@ -414,11 +400,11 @@ class hieratic (
 
   class { 'hieratic::firewall':
     global_enable => $global_enable,
-    firewall_label => '$firewall_label',
+    firewall_label => $firewall_label,
     firewall_enabled => $firewall_enabled,
-    firewall_pre_label => '$firewall_pre_label',
+    firewall_pre_label => $firewall_pre_label,
     firewall_pre_enabled => $firewall_pre_enabled,
-    firewall_post_label => '$firewall_post_label',
+    firewall_post_label => $firewall_post_label,
     firewall_post_enabled => $firewall_post_enabled,
   }
 
