@@ -171,17 +171,17 @@ The only public facing class is "hieratic".
 
 ### Parameters
 
- [*global_enable*]
-   Defaults to true. With this on all resources are exposed through Hiera.
-   For granular control set this to false and manually enable specific resource
-   types.
+* [*global_enable*]
+    Defaults to true. With this on all resources are exposed through Hiera.
+    For granular control set this to false and manually enable specific resource
+    types.
 
- [*TYPE_enable*]
-   Defaults to true. With this on all resources are exposed through Hiera.
+* [*TYPE_enable*]
+    Defaults to true. With this on all resources are exposed through Hiera.
 
- [*TYPE_label*]
-   Defaults to the name of the type. This defines the top level hiera variable
-   name to use when defining values of this type.
+* [*TYPE_label*]
+    Defaults to the name of the type. This defines the top level hiera variable
+    name to use when defining values of this type.
 
 
 
