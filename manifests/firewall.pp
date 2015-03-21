@@ -14,13 +14,13 @@ class hieratic::firewall (
     }
 
     Firewall {
-      before  => Class['fw::post'],
-      require => Class['fw::pre'],
+      before  => Class['hieratic::firewall::post'],
+      require => Class['hieratic::firewall::pre'],
     }
 
     $firewall_config = hiera_hash($firewall_label, {})
     create_resources(firewall, $firewall_config)
 
-    class { ['fw::pre', 'fw::post']: }
+    class { ['hieratic::firewall::pre', 'hieratic::firewall::post']: }
   }
 }
