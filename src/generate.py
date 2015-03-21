@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 import string
 import subprocess
@@ -24,11 +26,11 @@ f.close()
 
 hieratic_class += """\nclass hieratic (
   $global_enable = true,
-  $firewall_label = firewall,
+  $firewall_label = 'firewall',
   $firewall_enabled = false,
-  $firewall_pre_label = firewall_pre,
+  $firewall_pre_label = 'firewall_pre',
   $firewall_pre_enabled = false,
-  $firewall_post_label = firewall_post,
+  $firewall_post_label = 'firewall_post',
   $firewall_post_enabled = false,
 """
 
@@ -44,11 +46,11 @@ for puppet_type in puppet_types:
 hieratic_class += """
   class { 'hieratic::firewall':
     global_enable => $global_enable,
-    firewall_label => $firewall_label,
+    firewall_label => '$firewall_label',
     firewall_enabled => $firewall_enabled,
-    firewall_pre_label => $firewall_pre_label,
+    firewall_pre_label => '$firewall_pre_label',
     firewall_pre_enabled => $firewall_pre_enabled,
-    firewall_post_label => $firewall_post_label,
+    firewall_post_label => '$firewall_post_label',
     firewall_post_enabled => $firewall_post_enabled,
   }
 
