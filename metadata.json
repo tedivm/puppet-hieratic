@@ -1,6 +1,6 @@
 {
     "name": "tedivm-hieratic",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "author": "tedivm",
     "summary": "Hieratic allows Puppet Resources to be created directly in Hiera.",
     "license": "MIT",
