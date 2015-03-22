@@ -1,3 +1,16 @@
+# == Class: hieratic
+#
+# Internal class- this should be called through Hieratic, not directly.
+#
+# === Authors
+#
+# Robert Hafner <tedivm@tedivm.com>
+#
+# === Copyright
+#
+# Copyright 2015 Robert Hafner
+#
+
 class hieratic::firewall (
   $global_enable = true,
   $firewall_label = firewall,
@@ -8,8 +21,10 @@ class hieratic::firewall (
   $firewall_post_enabled = false,
 ) {
 
-  if(defined('firewall') and ($firewall_enabled or $global_enable)) {
-    resources { "firewall":
+  if(defined('firewall')
+    and ($firewall_enabled or $global_enable)) {
+
+    resources { 'firewall':
       purge => true
     }
 
