@@ -11,9 +11,11 @@
     * [Beginning with hieratic](#beginning-with-hieratic)
 4. [Usage - Configuration options and additional functionality](#usage)
     * [Define Resources in Hiera](#define-resources-in-hiera)
-    * [Add Parameters to Resources in Hiera](#add-parameters-to-resources-in-hiera)
+    * [Using Hierarchies with Hiera and Hieratic](#using-hierarchies-with-hiera-and-hieratic)
+    * [Differences Between Hieratic and Automatic Parameter Lookup](#differences-between-hieratic-and-automatic-parameter-lookup)
     * [Change the Labels (or names) of Hiera Resources](#change-the-labels-or-names-of-hiera-resources)
     * [Enabling Some Resources and not Others](#enabling-some-resources-and-not-others)
+    * [Defining Firewall Rules](#defining_firewall_rules)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
     * [Parameters](#parameters)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -29,16 +31,19 @@ Hieratic allows Puppet Resources to be created directly in
 This incredibly meta module allows for the direct creation of resources using
 Hiera.
 
-This module does, by itself, add any resources or change your systems. What it
-does is add a new way to configure systems by defining resources inside of
-Hiera. This makes it possible to define all site configuration in Hiera.
+This module does not, by itself, add any resources or change your systems. What
+it does is add a new way to configure systems by defining resources inside of
+Hiera. This makes it possible to define all site configuration in Hiera. This
+means that all of the site data can be kept in Hiera, allowing both a separation
+of data and implementation as well as the ability to store all configurations in
+a consistant format (yaml, json, or a custom provider).
 
 ## Supported Resources
 
 * [Puppet Resource Types](https://docs.puppetlabs.com/references/latest/type.html)
 * [Puppet Classes](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html)
 * [Firewall Module](https://forge.puppetlabs.com/puppetlabs/firewall), with the
-  addition of "firewall_pre" and "firewall_post" for global defaults around the
+  addition of `firewall_pre` and `firewall_post` for global defaults around the
   custom rules.
 
 ## Setup
@@ -46,16 +51,20 @@ Hiera. This makes it possible to define all site configuration in Hiera.
 ### What hieratic affects
 
 * Any supported resource can be modified with this module.
-* Most modules can be used by this module through the "class" resource.
+* Most modules can be used by this module through the `class` resource.
 
 ### Setup Requirements
 
-It's recommended that you enable ["deeper merge"](https://docs.puppetlabs.com/hiera/1/hierarchy.html)
+It's recommended that you enable [`deeper merge`](https://docs.puppetlabs.com/hiera/1/hierarchy.html)
 in Hiera and define a proper [hierarchy](https://docs.puppetlabs.com/hiera/1/hierarchy.html).
+
+Although Hiera supports some non-native modules, such as Firewalls, it does not
+include them. Any modules that are used as part of a site should be added as
+dependencies of that site.
 
 ### Beginning with hieratic
 
-Make sure to include hieratic in your main manifest.
+Make sure to include `hieratic` in your main manifest.
 
 ```puppet
 include hieratic
@@ -67,19 +76,37 @@ At this point you can move away manifests and over to Hiera.
 
 ### Define Resources in Hiera
 
-Install Packages:
+Without this module packages have to be defined in manifests-
+```puppet
+$packages = [ "git", "subversion", "p7zip", "nmap", "ethstatus", "iptraf" ]
+package { $packages: ensure => "installed" }
+```
+
+With Hieratic packages are listed as data in Hiera-
 ```yaml
 package:
   git: {}
   subversion: {}
   p7zip: {}
-  p7zip-full: {}
   nmap: {}
   ethstatus: {}
   iptraf: {}
 ```
 
-Setup Groups:
+This also works for other types such as groups-
+```puppet
+Group { "sudo":
+  name => "sudo"
+  ensure => "present"
+}
+
+Group { "admin":
+  name => "admin"
+  ensure => "present"
+}
+```
+
+The above gets replaced by-
 ```yaml
 group:
   sudo:
@@ -90,17 +117,25 @@ group:
     ensure: 'present'
 ```
 
-### Add Parameters to Resources in Hiera
+### Using Hierarchies with Hiera and Hieratic
 
-You can split configuration between files. For example, if you want to have a
-base ssh configuration with a secondary
+> Hiera uses an [ordered hierarchy](https://docs.puppetlabs.com/hiera/1/hierarchy.html)
+> to look up data. This allows you to have a large amount of common data and
+> override smaller amounts of it wherever necessary.
 
+The beauty of Hiera is in how it allows for default behaviors while allowing
+small changes for machines that need it. For example, if you want to have a base
+ssh configuration with some additional options for running on VirtualBox with
+Vagrant.
+
+For this example make sure your `hiera.yaml` file has a hierarchy using the
+`virtual` fact-
 ```yaml
 - "%{::virtual}"
 - "common"
 ```
 
-common.yaml:
+Then define the general definition in a `common.yaml` file:
 ```yaml
 class:
  'ssh':
@@ -116,11 +151,8 @@ class:
         - admin
 ```
 
-On systems running Vagrant we want to make sure that vagrant ssh will continue
-to work. This can be done using the following file when using Vagrant with
-VirtualBox.
+Finally add the custom information to `virtualbox.yaml`:
 
-virtualbox.yaml:
 ```yaml
 class:
   'ssh':
@@ -132,6 +164,13 @@ class:
         - vagrant
 ```
 
+### Differences Between Hieratic and Automatic Parameter Lookup
+
+Hieratic allows for the full merging of hierarchies, which is what allows the
+behavior from the example above to take place. The Automatic Parameter Lookup
+system has a [severe limitation](https://docs.puppetlabs.com/hiera/1/puppet.html#limitations)
+in that it can not merge values from multiple hierarchy levels- you will only
+get the highest priority value and nothing else.
 
 ### Change the Labels (or names) of Hiera Resources
 
@@ -157,7 +196,7 @@ packages:
   iptraf: {}
 ```
 
-### Enabling Some Resources and not Others
+### Enabling Some Resources and Not Others
 
 By default Hieratic enables all resource types. Turning off "global_enable" lets
 resources get enabled on an individual basis. They are all disabled by default,
@@ -170,6 +209,56 @@ class { 'hieratic':
   class_enable => true,
   file_enable => true,
 }
+```
+
+### Defining Firewall Rules
+
+With Hieratics all of your `firewall` rules can easily be defined in your Hiera
+configuration. You can use the `firewall_pre` and `firewall_post` rules to
+enforce the order which rules are added by Puppet to the system to prevent
+accidental lockouts.
+
+```yaml
+firewall_pre:
+  '000 accept all icmp':
+    proto: 'icmp'
+    action: 'accept'
+  '001 accept all to lo interface':
+    proto: 'all'
+    iniface: 'lo'
+    action: 'accept'
+  '002 accept established related rules':
+    proto: 'all'
+    state:
+      - 'ESTABLISHED'
+      - 'RELATED'
+    action: 'accept'
+
+firewall:
+  '022 accept ssh traffic':
+    proto: 'tcp'
+    dport: '22'
+    action: 'accept'
+
+firewall_post:
+  '910 drop remaining inputs':
+    chain: 'INPUT'
+    action: 'drop'
+    proto: 'all'
+  '910 drop remaining inputs ipv6':
+    chain: 'INPUT'
+    action: 'drop'
+    proto: 'all'
+    provider: 'ip6tables'
+  '910 drop remaining forwards':
+    chain: 'FORWARD'
+    action: 'drop'
+    proto: 'all'
+  '910 drop remaining forwards ipv6':
+    chain: 'FORWARD'
+    action: 'drop'
+    proto: 'all'
+    provider: 'ip6tables'
 ```
 
 ## Reference
@@ -200,4 +289,4 @@ operating system.
 This module uses a generator to build the code to support all of the resource
 types. If you're looking to add a new resource type simply open a pull request
 adding it to [this file](https://github.com/tedivm/puppet-hieratic/blob/master/resources/typelist.txt)
-and updating the supported modules list.
+and updating the [supported resources list]((#supported-resources)).
