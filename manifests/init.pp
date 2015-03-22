@@ -39,6 +39,8 @@
 
 class hieratic (
   $global_enable = true,
+  $class_label = 'class',
+  $class_enabled = false,
   $firewall_label = 'firewall',
   $firewall_enabled = false,
   $firewall_pre_label = 'firewall_pre',
@@ -47,8 +49,6 @@ class hieratic (
   $firewall_post_enabled = false,
   $augeas_label = 'augeas',
   $augeas_enabled = false,
-  $class_label = 'class',
-  $class_enabled = false,
   $computers_label = 'computers',
   $computers_enabled = false,
   $cron_label = 'cron',
@@ -153,14 +153,6 @@ class hieratic (
         hiera_hash($augeas_label, {})
       create_resources('augeas',
         $augeas_config)
-  }
-
-  if(defined('class')
-    and ($class_enabled or $global_enable)) {
-      $class_config =
-        hiera_hash($class_label, {})
-      create_resources('class',
-        $class_config)
   }
 
   if(defined('computers')
@@ -430,7 +422,7 @@ class hieratic (
   if(defined('schedule')
     and ($schedule_enabled or $global_enable)) {
       $schedule_config =
-        hiera_hash($schedule_label, {})
+        hiera_hash($sched  ule_label, {})
       create_resources('schedule',
         $schedule_config)
   }
@@ -547,6 +539,11 @@ class hieratic (
         $zpool_config)
   }
 
+
+  if($class_enabled or $global_enable) {
+      $class_config = hiera_hash($class_label, {})
+      create_resources('class', $class_config)
+  }
 
   class { 'hieratic::firewall':
     global_enable         => $global_enable,

@@ -26,6 +26,8 @@ f.close()
 
 hieratic_class += """\nclass hieratic (
   $global_enable = true,
+  $class_label = 'class',
+  $class_enabled = false,  
   $firewall_label = 'firewall',
   $firewall_enabled = false,
   $firewall_pre_label = 'firewall_pre',
@@ -44,6 +46,11 @@ for puppet_type in puppet_types:
   hieratic_class += typedef_tmpl.substitute(type=puppet_type) + "\n"
 
 hieratic_class += """
+  if($class_enabled or $global_enable) {
+      $class_config = hiera_hash($class_label, {})
+      create_resources('class', $class_config)
+  }
+
   class { 'hieratic::firewall':
     global_enable         => $global_enable,
     firewall_label        => $firewall_label,

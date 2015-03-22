@@ -1,5 +1,4 @@
 augeas
-class
 computers
 cron
 exec
