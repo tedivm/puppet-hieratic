@@ -1,13 +1,59 @@
 {
-  "name": "tedivm-hieratic",
-  "version": "0.1.0",
-  "author": "tedivm",
-  "summary": "Hieratic allows Puppet Resources to be created directly in Hiera.",
-  "license": "MIT",
-  "source": "https://github.com/tedivm/puppet-hieratic",
-  "project_page": "https://github.com/tedivm/puppet-hieratic",
-  "issues_url": "https://github.com/tedivm/puppet-hieratic/issues",
-  "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
-  ]
+    "name": "tedivm-hieratic",
+    "version": "0.5.0",
+    "author": "tedivm",
+    "summary": "Hieratic allows Puppet Resources to be created directly in Hiera.",
+    "license": "MIT",
+    "source": "https://github.com/tedivm/puppet-hieratic",
+    "project_page": "https://forge.puppetlabs.com/tedivm/hieratic",
+    "issues_url": "https://github.com/tedivm/puppet-hieratic/issues",
+    "tags": ["hiera"],
+    "dependencies": [
+        {
+            "name": "puppetlabs-stdlib",
+            "version_requirement": ">= 1.0.0"
+        }
+    ],
+    "operatingsystem_support": [
+        {
+            "operatingsystem": "RedHat"
+        },
+        {
+            "operatingsystem": "CentOS"
+        },
+        {
+            "operatingsystem": "OracleLinux"
+        },
+        {
+            "operatingsystem": "Scientific"
+        },
+        {
+            "operatingsystem": "SLES"
+        },
+        {
+            "operatingsystem": "Debian"
+        },
+        {
+            "operatingsystem": "Ubuntu"
+        },
+        {
+            "operatingsystem": "AIX"
+        },
+        {
+            "operatingsystem": "Mac"
+        },
+        {
+            "operatingsystem": "Windows"
+        }
+    ],
+    "requirements": [
+        {
+            "name": "pe",
+            "version_requirement": "3.x"
+        },
+        {
+            "name": "puppet",
+            "version_requirement": "3.x"
+        }
+    ]
 }
