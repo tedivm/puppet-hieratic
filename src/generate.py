@@ -27,7 +27,7 @@ f.close()
 hieratic_class += """\nclass hieratic (
   $global_enable = true,
   $class_label = 'class',
-  $class_enabled = false,  
+  $class_enabled = false,
   $firewall_label = 'firewall',
   $firewall_enabled = false,
   $firewall_pre_label = 'firewall_pre',
@@ -65,13 +65,13 @@ hieratic_class += """
 
 
 # puppet-lint only works on files, so we write it to temp and return the result.
-f = tempfile.NamedTemporaryFile()
-f.write(hieratic_class)
-devnull = open(os.devnull, 'w')
-subprocess.call(['puppet-lint',f.name,'--fix'], stdout=devnull, stderr=devnull )
-f.seek(0)
-hieratic_class = f.read()
-f.close()
+#f = tempfile.NamedTemporaryFile()
+#f.write(hieratic_class)
+#devnull = open(os.devnull, 'w')
+#subprocess.call(['puppet-lint',f.name,'--fix'], stdout=devnull, stderr=devnull )
+#f.seek(0)
+#hieratic_class = f.read()
+#f.close()
 
 
 print hieratic_class

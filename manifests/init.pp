@@ -422,7 +422,7 @@ class hieratic (
   if(defined('schedule')
     and ($schedule_enabled or $global_enable)) {
       $schedule_config =
-        hiera_hash($sched  ule_label, {})
+        hiera_hash($schedule_label, {})
       create_resources('schedule',
         $schedule_config)
   }
