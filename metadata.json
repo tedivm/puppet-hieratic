@@ -1,11 +1,11 @@
 {
     "name": "tedivm-hieratic",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "author": "tedivm",
     "summary": "Hieratic allows Puppet Resources to be created directly in Hiera.",
     "license": "MIT",
     "source": "https://github.com/tedivm/puppet-hieratic",
-    "project_page": "https://forge.puppetlabs.com/tedivm/hieratic",
+    "project_page": "https://github.com/tedivm/puppet-hieratic",
     "issues_url": "https://github.com/tedivm/puppet-hieratic/issues",
     "tags": ["hiera"],
     "dependencies": [
