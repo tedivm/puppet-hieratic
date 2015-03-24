@@ -84,6 +84,7 @@ package { $packages: ensure => "installed" }
 
 With Hieratic packages are listed as data in Hiera-
 ```yaml
+---
 package:
   git: {}
   subversion: {}
@@ -108,6 +109,7 @@ Group { "admin":
 
 The above gets replaced by-
 ```yaml
+---
 group:
   sudo:
     name: 'sudo'
@@ -131,12 +133,14 @@ Vagrant.
 For this example make sure your `hiera.yaml` file has a hierarchy using the
 `virtual` fact-
 ```yaml
+---
 - "%{::virtual}"
 - "common"
 ```
 
 Then define the general definition in a `common.yaml` file:
 ```yaml
+---
 class:
  'ssh':
     'server_options':
@@ -154,6 +158,7 @@ class:
 Finally add the custom information to `virtualbox.yaml`:
 
 ```yaml
+---
 class:
   'ssh':
     storeconfigs_enabled: false
@@ -186,6 +191,7 @@ class { 'hieratic':
 ```
 
 ```yaml
+---
 packages:
   git: {}
   subversion: {}
@@ -219,6 +225,7 @@ enforce the order which rules are added by Puppet to the system to prevent
 accidental lockouts.
 
 ```yaml
+---
 firewall_pre:
   '000 accept all icmp':
     proto: 'icmp'
