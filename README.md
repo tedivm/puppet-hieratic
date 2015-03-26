@@ -42,9 +42,27 @@ a consistant format (yaml, json, or a custom provider).
 
 * [Puppet Resource Types](https://docs.puppetlabs.com/references/latest/type.html)
 * [Puppet Classes](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html)
-* [Firewall Module](https://forge.puppetlabs.com/puppetlabs/firewall), with the
-  addition of `firewall_pre` and `firewall_post` for global defaults around the
-  custom rules.
+
+In addition to the build in resources, Hieratic supports the resource types from
+these modules:
+
+* [puppetlabs-acl](http://forge.puppetlabs.com/puppetlabs/acl)
+* [puppetlabs-apache](http://forge.puppetlabs.com/puppetlabs/apache)
+* [puppetlabs-apt](http://forge.puppetlabs.com/puppetlabs/apt)
+* [puppetlabs-concat](http://forge.puppetlabs.com/puppetlabs/concat)
+* [puppetlabs-firewall](https://forge.puppetlabs.com/puppetlabs/firewall), with
+  the addition of `firewall_pre` and `firewall_post` for global defaults around
+  the custom rules.
+* [puppetlabs-git](http://forge.puppetlabs.com/puppetlabs/git)
+* [puppetlabs-inifile](http://forge.puppetlabs.com/puppetlabs/inifile)
+* [puppetlabs-java_ks](http://forge.puppetlabs.com/puppetlabs/java_ks)
+* [puppetlabs-mysql](http://forge.puppetlabs.com/puppetlabs/mysql)
+* [puppetlabs-postgresql](http://forge.puppetlabs.com/puppetlabs/postgresql)
+* [puppetlabs-registry](http://forge.puppetlabs.com/puppetlabs/registry)
+* [puppetlabs-rsync](http://forge.puppetlabs.com/puppetlabs/rsync)
+* [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)
+* [puppetlabs-vcsrepo](http://forge.puppetlabs.com/puppetlabs/vcsrepo)
+
 
 ## Setup
 
@@ -296,4 +314,7 @@ operating system.
 This module uses a generator to build the code to support all of the resource
 types. If you're looking to add a new resource type simply open a pull request
 adding it to [this file](https://github.com/tedivm/puppet-hieratic/blob/master/resources/typelist.txt)
-and updating the [supported resources list]((#supported-resources)).
+and updating the [supported resources list]((#supported-resources)). For
+resources that require customization (such as the firewall module) you should
+add the code into a separate class and then include it in the
+generator](https://github.com/tedivm/puppet-hieratic/blob/master/src/generate.py#L48).
