@@ -336,7 +336,7 @@ class hieratic (
       or $global_enable)) {
 
         $acl_config =
-          hiera_hash($acl, {})
+          hiera_hash($acl_label, {})
 
         create_resources('acl',
           $acl_config)
@@ -347,7 +347,7 @@ class hieratic (
       or $global_enable)) {
 
         $apache_balancer_config =
-          hiera_hash($apache_balancer, {})
+          hiera_hash($apache_balancer_label, {})
 
         create_resources('apache::balancer',
           $apache_balancer_config)
@@ -358,7 +358,7 @@ class hieratic (
       or $global_enable)) {
 
         $apache_balancermember_config =
-          hiera_hash($apache_balancermember, {})
+          hiera_hash($apache_balancermember_label, {})
 
         create_resources('apache::balancermember',
           $apache_balancermember_config)
@@ -369,7 +369,7 @@ class hieratic (
       or $global_enable)) {
 
         $apache_listen_config =
-          hiera_hash($apache_listen, {})
+          hiera_hash($apache_listen_label, {})
 
         create_resources('apache::listen',
           $apache_listen_config)
@@ -380,7 +380,7 @@ class hieratic (
       or $global_enable)) {
 
         $apache_mod_config =
-          hiera_hash($apache_mod, {})
+          hiera_hash($apache_mod_label, {})
 
         create_resources('apache::mod',
           $apache_mod_config)
@@ -391,7 +391,7 @@ class hieratic (
       or $global_enable)) {
 
         $apache_namevirtualhost_config =
-          hiera_hash($apache_namevirtualhost, {})
+          hiera_hash($apache_namevirtualhost_label, {})
 
         create_resources('apache::namevirtualhost',
           $apache_namevirtualhost_config)
@@ -402,7 +402,7 @@ class hieratic (
       or $global_enable)) {
 
         $apache_vhost_config =
-          hiera_hash($apache_vhost, {})
+          hiera_hash($apache_vhost_label, {})
 
         create_resources('apache::vhost',
           $apache_vhost_config)
@@ -413,7 +413,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_builddep_config =
-          hiera_hash($apt_builddep, {})
+          hiera_hash($apt_builddep_label, {})
 
         create_resources('apt::builddep',
           $apt_builddep_config)
@@ -424,7 +424,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_conf_config =
-          hiera_hash($apt_conf, {})
+          hiera_hash($apt_conf_label, {})
 
         create_resources('apt::conf',
           $apt_conf_config)
@@ -435,7 +435,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_force_config =
-          hiera_hash($apt_force, {})
+          hiera_hash($apt_force_label, {})
 
         create_resources('apt::force',
           $apt_force_config)
@@ -446,7 +446,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_hold_config =
-          hiera_hash($apt_hold, {})
+          hiera_hash($apt_hold_label, {})
 
         create_resources('apt::hold',
           $apt_hold_config)
@@ -457,7 +457,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_key_config =
-          hiera_hash($apt_key, {})
+          hiera_hash($apt_key_label, {})
 
         create_resources('apt::key',
           $apt_key_config)
@@ -468,7 +468,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_pin_config =
-          hiera_hash($apt_pin, {})
+          hiera_hash($apt_pin_label, {})
 
         create_resources('apt::pin',
           $apt_pin_config)
@@ -479,7 +479,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_ppa_config =
-          hiera_hash($apt_ppa, {})
+          hiera_hash($apt_ppa_label, {})
 
         create_resources('apt::ppa',
           $apt_ppa_config)
@@ -490,7 +490,7 @@ class hieratic (
       or $global_enable)) {
 
         $apt_source_config =
-          hiera_hash($apt_source, {})
+          hiera_hash($apt_source_label, {})
 
         create_resources('apt::source',
           $apt_source_config)
@@ -501,7 +501,7 @@ class hieratic (
       or $global_enable)) {
 
         $augeas_config =
-          hiera_hash($augeas, {})
+          hiera_hash($augeas_label, {})
 
         create_resources('augeas',
           $augeas_config)
@@ -512,7 +512,7 @@ class hieratic (
       or $global_enable)) {
 
         $computers_config =
-          hiera_hash($computers, {})
+          hiera_hash($computers_label, {})
 
         create_resources('computers',
           $computers_config)
@@ -523,7 +523,7 @@ class hieratic (
       or $global_enable)) {
 
         $concat_config =
-          hiera_hash($concat, {})
+          hiera_hash($concat_label, {})
 
         create_resources('concat',
           $concat_config)
@@ -534,7 +534,7 @@ class hieratic (
       or $global_enable)) {
 
         $concat_fragment_config =
-          hiera_hash($concat_fragment, {})
+          hiera_hash($concat_fragment_label, {})
 
         create_resources('concat::fragment',
           $concat_fragment_config)
@@ -545,7 +545,7 @@ class hieratic (
       or $global_enable)) {
 
         $cron_config =
-          hiera_hash($cron, {})
+          hiera_hash($cron_label, {})
 
         create_resources('cron',
           $cron_config)
@@ -556,7 +556,7 @@ class hieratic (
       or $global_enable)) {
 
         $exec_config =
-          hiera_hash($exec, {})
+          hiera_hash($exec_label, {})
 
         create_resources('exec',
           $exec_config)
@@ -567,7 +567,7 @@ class hieratic (
       or $global_enable)) {
 
         $file_config =
-          hiera_hash($file, {})
+          hiera_hash($file_label, {})
 
         create_resources('file',
           $file_config)
@@ -578,7 +578,7 @@ class hieratic (
       or $global_enable)) {
 
         $file_line_config =
-          hiera_hash($file_line, {})
+          hiera_hash($file_line_label, {})
 
         create_resources('file_line',
           $file_line_config)
@@ -589,7 +589,7 @@ class hieratic (
       or $global_enable)) {
 
         $filebucket_config =
-          hiera_hash($filebucket, {})
+          hiera_hash($filebucket_label, {})
 
         create_resources('filebucket',
           $filebucket_config)
@@ -600,7 +600,7 @@ class hieratic (
       or $global_enable)) {
 
         $git_config_config =
-          hiera_hash($git_config, {})
+          hiera_hash($git_config_label, {})
 
         create_resources('git::config',
           $git_config_config)
@@ -611,7 +611,7 @@ class hieratic (
       or $global_enable)) {
 
         $group_config =
-          hiera_hash($group, {})
+          hiera_hash($group_label, {})
 
         create_resources('group',
           $group_config)
@@ -622,7 +622,7 @@ class hieratic (
       or $global_enable)) {
 
         $host_config =
-          hiera_hash($host, {})
+          hiera_hash($host_label, {})
 
         create_resources('host',
           $host_config)
@@ -633,7 +633,7 @@ class hieratic (
       or $global_enable)) {
 
         $ini_setting_config =
-          hiera_hash($ini_setting, {})
+          hiera_hash($ini_setting_label, {})
 
         create_resources('ini_setting',
           $ini_setting_config)
@@ -644,7 +644,7 @@ class hieratic (
       or $global_enable)) {
 
         $ini_subsetting_config =
-          hiera_hash($ini_subsetting, {})
+          hiera_hash($ini_subsetting_label, {})
 
         create_resources('ini_subsetting',
           $ini_subsetting_config)
@@ -655,7 +655,7 @@ class hieratic (
       or $global_enable)) {
 
         $interface_config =
-          hiera_hash($interface, {})
+          hiera_hash($interface_label, {})
 
         create_resources('interface',
           $interface_config)
@@ -666,7 +666,7 @@ class hieratic (
       or $global_enable)) {
 
         $java_ks_config =
-          hiera_hash($java_ks, {})
+          hiera_hash($java_ks_label, {})
 
         create_resources('java_ks',
           $java_ks_config)
@@ -677,7 +677,7 @@ class hieratic (
       or $global_enable)) {
 
         $k5login_config =
-          hiera_hash($k5login, {})
+          hiera_hash($k5login_label, {})
 
         create_resources('k5login',
           $k5login_config)
@@ -688,7 +688,7 @@ class hieratic (
       or $global_enable)) {
 
         $macauthorization_config =
-          hiera_hash($macauthorization, {})
+          hiera_hash($macauthorization_label, {})
 
         create_resources('macauthorization',
           $macauthorization_config)
@@ -699,7 +699,7 @@ class hieratic (
       or $global_enable)) {
 
         $mailalias_config =
-          hiera_hash($mailalias, {})
+          hiera_hash($mailalias_label, {})
 
         create_resources('mailalias',
           $mailalias_config)
@@ -710,7 +710,7 @@ class hieratic (
       or $global_enable)) {
 
         $maillist_config =
-          hiera_hash($maillist, {})
+          hiera_hash($maillist_label, {})
 
         create_resources('maillist',
           $maillist_config)
@@ -721,7 +721,7 @@ class hieratic (
       or $global_enable)) {
 
         $mcx_config =
-          hiera_hash($mcx, {})
+          hiera_hash($mcx_label, {})
 
         create_resources('mcx',
           $mcx_config)
@@ -732,7 +732,7 @@ class hieratic (
       or $global_enable)) {
 
         $mount_config =
-          hiera_hash($mount, {})
+          hiera_hash($mount_label, {})
 
         create_resources('mount',
           $mount_config)
@@ -743,7 +743,7 @@ class hieratic (
       or $global_enable)) {
 
         $mysql_database_config =
-          hiera_hash($mysql_database, {})
+          hiera_hash($mysql_database_label, {})
 
         create_resources('mysql_database',
           $mysql_database_config)
@@ -754,7 +754,7 @@ class hieratic (
       or $global_enable)) {
 
         $mysql_grant_config =
-          hiera_hash($mysql_grant, {})
+          hiera_hash($mysql_grant_label, {})
 
         create_resources('mysql_grant',
           $mysql_grant_config)
@@ -765,7 +765,7 @@ class hieratic (
       or $global_enable)) {
 
         $mysql_plugin_config =
-          hiera_hash($mysql_plugin, {})
+          hiera_hash($mysql_plugin_label, {})
 
         create_resources('mysql_plugin',
           $mysql_plugin_config)
@@ -776,7 +776,7 @@ class hieratic (
       or $global_enable)) {
 
         $mysql_user_config =
-          hiera_hash($mysql_user, {})
+          hiera_hash($mysql_user_label, {})
 
         create_resources('mysql_user',
           $mysql_user_config)
@@ -787,7 +787,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_command_config =
-          hiera_hash($nagios_command, {})
+          hiera_hash($nagios_command_label, {})
 
         create_resources('nagios_command',
           $nagios_command_config)
@@ -798,7 +798,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_contact_config =
-          hiera_hash($nagios_contact, {})
+          hiera_hash($nagios_contact_label, {})
 
         create_resources('nagios_contact',
           $nagios_contact_config)
@@ -809,7 +809,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_contactgroup_config =
-          hiera_hash($nagios_contactgroup, {})
+          hiera_hash($nagios_contactgroup_label, {})
 
         create_resources('nagios_contactgroup',
           $nagios_contactgroup_config)
@@ -820,7 +820,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_host_config =
-          hiera_hash($nagios_host, {})
+          hiera_hash($nagios_host_label, {})
 
         create_resources('nagios_host',
           $nagios_host_config)
@@ -831,7 +831,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_hostdependency_config =
-          hiera_hash($nagios_hostdependency, {})
+          hiera_hash($nagios_hostdependency_label, {})
 
         create_resources('nagios_hostdependency',
           $nagios_hostdependency_config)
@@ -842,7 +842,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_hostescalation_config =
-          hiera_hash($nagios_hostescalation, {})
+          hiera_hash($nagios_hostescalation_label, {})
 
         create_resources('nagios_hostescalation',
           $nagios_hostescalation_config)
@@ -853,7 +853,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_hostextinfo_config =
-          hiera_hash($nagios_hostextinfo, {})
+          hiera_hash($nagios_hostextinfo_label, {})
 
         create_resources('nagios_hostextinfo',
           $nagios_hostextinfo_config)
@@ -864,7 +864,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_hostgroup_config =
-          hiera_hash($nagios_hostgroup, {})
+          hiera_hash($nagios_hostgroup_label, {})
 
         create_resources('nagios_hostgroup',
           $nagios_hostgroup_config)
@@ -875,7 +875,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_service_config =
-          hiera_hash($nagios_service, {})
+          hiera_hash($nagios_service_label, {})
 
         create_resources('nagios_service',
           $nagios_service_config)
@@ -886,7 +886,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_servicedependency_config =
-          hiera_hash($nagios_servicedependency, {})
+          hiera_hash($nagios_servicedependency_label, {})
 
         create_resources('nagios_servicedependency',
           $nagios_servicedependency_config)
@@ -897,7 +897,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_serviceescalation_config =
-          hiera_hash($nagios_serviceescalation, {})
+          hiera_hash($nagios_serviceescalation_label, {})
 
         create_resources('nagios_serviceescalation',
           $nagios_serviceescalation_config)
@@ -908,7 +908,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_serviceextinfo_config =
-          hiera_hash($nagios_serviceextinfo, {})
+          hiera_hash($nagios_serviceextinfo_label, {})
 
         create_resources('nagios_serviceextinfo',
           $nagios_serviceextinfo_config)
@@ -919,7 +919,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_servicegroup_config =
-          hiera_hash($nagios_servicegroup, {})
+          hiera_hash($nagios_servicegroup_label, {})
 
         create_resources('nagios_servicegroup',
           $nagios_servicegroup_config)
@@ -930,7 +930,7 @@ class hieratic (
       or $global_enable)) {
 
         $nagios_timeperiod_config =
-          hiera_hash($nagios_timeperiod, {})
+          hiera_hash($nagios_timeperiod_label, {})
 
         create_resources('nagios_timeperiod',
           $nagios_timeperiod_config)
@@ -941,7 +941,7 @@ class hieratic (
       or $global_enable)) {
 
         $notify_config =
-          hiera_hash($notify, {})
+          hiera_hash($notify_label, {})
 
         create_resources('notify',
           $notify_config)
@@ -952,7 +952,7 @@ class hieratic (
       or $global_enable)) {
 
         $package_config =
-          hiera_hash($package, {})
+          hiera_hash($package_label, {})
 
         create_resources('package',
           $package_config)
@@ -963,7 +963,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_config_entry_config =
-          hiera_hash($postgresql_server_config_entry, {})
+          hiera_hash($postgresql_server_config_entry_label, {})
 
         create_resources('postgresql::server::config_entry',
           $postgresql_server_config_entry_config)
@@ -974,7 +974,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_database_config =
-          hiera_hash($postgresql_server_database, {})
+          hiera_hash($postgresql_server_database_label, {})
 
         create_resources('postgresql::server::database',
           $postgresql_server_database_config)
@@ -985,7 +985,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_database_grant_config =
-          hiera_hash($postgresql_server_database_grant, {})
+          hiera_hash($postgresql_server_database_grant_label, {})
 
         create_resources('postgresql::server::database_grant',
           $postgresql_server_database_grant_config)
@@ -996,7 +996,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_db_config =
-          hiera_hash($postgresql_server_db, {})
+          hiera_hash($postgresql_server_db_label, {})
 
         create_resources('postgresql::server::db',
           $postgresql_server_db_config)
@@ -1007,7 +1007,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_extension_config =
-          hiera_hash($postgresql_server_extension, {})
+          hiera_hash($postgresql_server_extension_label, {})
 
         create_resources('postgresql::server::extension',
           $postgresql_server_extension_config)
@@ -1018,7 +1018,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_pg_hba_rule_config =
-          hiera_hash($postgresql_server_pg_hba_rule, {})
+          hiera_hash($postgresql_server_pg_hba_rule_label, {})
 
         create_resources('postgresql::server::pg_hba_rule',
           $postgresql_server_pg_hba_rule_config)
@@ -1029,7 +1029,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_pg_ident_rule_config =
-          hiera_hash($postgresql_server_pg_ident_rule, {})
+          hiera_hash($postgresql_server_pg_ident_rule_label, {})
 
         create_resources('postgresql::server::pg_ident_rule',
           $postgresql_server_pg_ident_rule_config)
@@ -1040,7 +1040,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_role_config =
-          hiera_hash($postgresql_server_role, {})
+          hiera_hash($postgresql_server_role_label, {})
 
         create_resources('postgresql::server::role',
           $postgresql_server_role_config)
@@ -1051,7 +1051,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_schema_config =
-          hiera_hash($postgresql_server_schema, {})
+          hiera_hash($postgresql_server_schema_label, {})
 
         create_resources('postgresql::server::schema',
           $postgresql_server_schema_config)
@@ -1062,7 +1062,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_table_grant_config =
-          hiera_hash($postgresql_server_table_grant, {})
+          hiera_hash($postgresql_server_table_grant_label, {})
 
         create_resources('postgresql::server::table_grant',
           $postgresql_server_table_grant_config)
@@ -1073,7 +1073,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_server_tablespace_config =
-          hiera_hash($postgresql_server_tablespace, {})
+          hiera_hash($postgresql_server_tablespace_label, {})
 
         create_resources('postgresql::server::tablespace',
           $postgresql_server_tablespace_config)
@@ -1084,7 +1084,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_validate_db_connection_config =
-          hiera_hash($postgresql_validate_db_connection, {})
+          hiera_hash($postgresql_validate_db_connection_label, {})
 
         create_resources('postgresql::validate_db_connection',
           $postgresql_validate_db_connection_config)
@@ -1095,7 +1095,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_conf_config =
-          hiera_hash($postgresql_conf, {})
+          hiera_hash($postgresql_conf_label, {})
 
         create_resources('postgresql_conf',
           $postgresql_conf_config)
@@ -1106,7 +1106,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_psql_config =
-          hiera_hash($postgresql_psql, {})
+          hiera_hash($postgresql_psql_label, {})
 
         create_resources('postgresql_psql',
           $postgresql_psql_config)
@@ -1117,7 +1117,7 @@ class hieratic (
       or $global_enable)) {
 
         $postgresql_replication_slot_config =
-          hiera_hash($postgresql_replication_slot, {})
+          hiera_hash($postgresql_replication_slot_label, {})
 
         create_resources('postgresql_replication_slot',
           $postgresql_replication_slot_config)
@@ -1128,7 +1128,7 @@ class hieratic (
       or $global_enable)) {
 
         $registry_value_config =
-          hiera_hash($registry_value, {})
+          hiera_hash($registry_value_label, {})
 
         create_resources('registry::value',
           $registry_value_config)
@@ -1139,7 +1139,7 @@ class hieratic (
       or $global_enable)) {
 
         $resources_config =
-          hiera_hash($resources, {})
+          hiera_hash($resources_label, {})
 
         create_resources('resources',
           $resources_config)
@@ -1150,7 +1150,7 @@ class hieratic (
       or $global_enable)) {
 
         $router_config =
-          hiera_hash($router, {})
+          hiera_hash($router_label, {})
 
         create_resources('router',
           $router_config)
@@ -1161,7 +1161,7 @@ class hieratic (
       or $global_enable)) {
 
         $rsync_get_config =
-          hiera_hash($rsync_get, {})
+          hiera_hash($rsync_get_label, {})
 
         create_resources('rsync::get',
           $rsync_get_config)
@@ -1172,7 +1172,7 @@ class hieratic (
       or $global_enable)) {
 
         $rsync_put_config =
-          hiera_hash($rsync_put, {})
+          hiera_hash($rsync_put_label, {})
 
         create_resources('rsync::put',
           $rsync_put_config)
@@ -1183,7 +1183,7 @@ class hieratic (
       or $global_enable)) {
 
         $rsync_server_module_config =
-          hiera_hash($rsync_server_module, {})
+          hiera_hash($rsync_server_module_label, {})
 
         create_resources('rsync::server::module',
           $rsync_server_module_config)
@@ -1194,7 +1194,7 @@ class hieratic (
       or $global_enable)) {
 
         $schedule_config =
-          hiera_hash($schedule, {})
+          hiera_hash($schedule_label, {})
 
         create_resources('schedule',
           $schedule_config)
@@ -1205,7 +1205,7 @@ class hieratic (
       or $global_enable)) {
 
         $scheduled_task_config =
-          hiera_hash($scheduled_task, {})
+          hiera_hash($scheduled_task_label, {})
 
         create_resources('scheduled_task',
           $scheduled_task_config)
@@ -1216,7 +1216,7 @@ class hieratic (
       or $global_enable)) {
 
         $selboolean_config =
-          hiera_hash($selboolean, {})
+          hiera_hash($selboolean_label, {})
 
         create_resources('selboolean',
           $selboolean_config)
@@ -1227,7 +1227,7 @@ class hieratic (
       or $global_enable)) {
 
         $selmodule_config =
-          hiera_hash($selmodule, {})
+          hiera_hash($selmodule_label, {})
 
         create_resources('selmodule',
           $selmodule_config)
@@ -1238,7 +1238,7 @@ class hieratic (
       or $global_enable)) {
 
         $service_config =
-          hiera_hash($service, {})
+          hiera_hash($service_label, {})
 
         create_resources('service',
           $service_config)
@@ -1249,7 +1249,7 @@ class hieratic (
       or $global_enable)) {
 
         $ssh_authorized_key_config =
-          hiera_hash($ssh_authorized_key, {})
+          hiera_hash($ssh_authorized_key_label, {})
 
         create_resources('ssh_authorized_key',
           $ssh_authorized_key_config)
@@ -1260,7 +1260,7 @@ class hieratic (
       or $global_enable)) {
 
         $ssh_key_config =
-          hiera_hash($ssh_key, {})
+          hiera_hash($ssh_key_label, {})
 
         create_resources('ssh_key',
           $ssh_key_config)
@@ -1271,7 +1271,7 @@ class hieratic (
       or $global_enable)) {
 
         $stage_config =
-          hiera_hash($stage, {})
+          hiera_hash($stage_label, {})
 
         create_resources('stage',
           $stage_config)
@@ -1282,7 +1282,7 @@ class hieratic (
       or $global_enable)) {
 
         $tidy_config =
-          hiera_hash($tidy, {})
+          hiera_hash($tidy_label, {})
 
         create_resources('tidy',
           $tidy_config)
@@ -1293,7 +1293,7 @@ class hieratic (
       or $global_enable)) {
 
         $user_config =
-          hiera_hash($user, {})
+          hiera_hash($user_label, {})
 
         create_resources('user',
           $user_config)
@@ -1304,7 +1304,7 @@ class hieratic (
       or $global_enable)) {
 
         $vcsrepo_config =
-          hiera_hash($vcsrepo, {})
+          hiera_hash($vcsrepo_label, {})
 
         create_resources('vcsrepo',
           $vcsrepo_config)
@@ -1315,7 +1315,7 @@ class hieratic (
       or $global_enable)) {
 
         $vlan_config =
-          hiera_hash($vlan, {})
+          hiera_hash($vlan_label, {})
 
         create_resources('vlan',
           $vlan_config)
@@ -1326,7 +1326,7 @@ class hieratic (
       or $global_enable)) {
 
         $yumrepo_config =
-          hiera_hash($yumrepo, {})
+          hiera_hash($yumrepo_label, {})
 
         create_resources('yumrepo',
           $yumrepo_config)
@@ -1337,7 +1337,7 @@ class hieratic (
       or $global_enable)) {
 
         $zfs_config =
-          hiera_hash($zfs, {})
+          hiera_hash($zfs_label, {})
 
         create_resources('zfs',
           $zfs_config)
@@ -1348,7 +1348,7 @@ class hieratic (
       or $global_enable)) {
 
         $zone_config =
-          hiera_hash($zone, {})
+          hiera_hash($zone_label, {})
 
         create_resources('zone',
           $zone_config)
@@ -1359,7 +1359,7 @@ class hieratic (
       or $global_enable)) {
 
         $zpool_config =
-          hiera_hash($zpool, {})
+          hiera_hash($zpool_label, {})
 
         create_resources('zpool',
           $zpool_config)
