@@ -1,7 +1,10 @@
   if(defined('$type')
-    and ($$${type}_enabled or $$global_enable)) {
-      $$${type}_config =
-        hiera_hash($$${type}_label, {})
-      create_resources('$type',
-        $$${type}_config)
+    and ($$${type_delimited}_enabled
+      or $$global_enable)) {
+
+        $$${type_delimited}_config =
+          hiera_hash($$$type_delimited, {})
+
+        create_resources('$type',
+          $$${type_delimited}_config)
   }

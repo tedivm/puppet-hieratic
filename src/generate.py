@@ -37,13 +37,12 @@ hieratic_class += """\nclass hieratic (
 """
 
 for puppet_type in puppet_types:
-  type_label = puppet_type
-  hieratic_class += parameter_tmpl.substitute(type=puppet_type, type_label_default=type_label)
+  hieratic_class += parameter_tmpl.substitute(type=puppet_type, type_delimited=puppet_type.replace('::', '_'))
 
 hieratic_class += ") {\n\n"
 
 for puppet_type in puppet_types:
-  hieratic_class += typedef_tmpl.substitute(type=puppet_type) + "\n"
+  hieratic_class += typedef_tmpl.substitute(type=puppet_type, type_delimited=puppet_type.replace('::', '_')) + "\n"
 
 hieratic_class += """
   if($class_enabled or $global_enable) {
