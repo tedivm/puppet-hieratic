@@ -15,10 +15,13 @@ class hieratic::firewall (
   $global_enable = true,
   $firewall_label = firewall,
   $firewall_enabled = false,
+  $firewall_defaults = {},
   $firewall_pre_label = firewall_pre,
   $firewall_pre_enabled = false,
+  $firewall_pre_defaults = {},
   $firewall_post_label = firewall_post,
   $firewall_post_enabled = false,
+  $firewall_post_defaults = {},
 ) {
 
   if(defined('firewall')
@@ -34,7 +37,7 @@ class hieratic::firewall (
     }
 
     $firewall_config = hiera_hash($firewall_label, {})
-    create_resources(firewall, $firewall_config)
+    create_resources(firewall, $firewall_config, $firewall_defaults)
 
     class { ['hieratic::firewall::pre', 'hieratic::firewall::post']: }
   }

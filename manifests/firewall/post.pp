@@ -19,6 +19,7 @@ class hieratic::firewall::post {
     and ($hieratic::firewall::firewall_post_enabled
       or $hieratic::firewall::global_enable)) {
     create_resources(firewall,
-      hiera_hash($hieratic::firewall::firewall_post_label, {}))
+      hiera_hash($hieratic::firewall::firewall_post_label,
+        $hieratic::firewall::firewall_post_defaults))
   }
 }

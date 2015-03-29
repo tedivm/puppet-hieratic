@@ -29,12 +29,16 @@ hieratic_class += """\nclass hieratic (
   $prefix = '',
   $class_label = 'class',
   $class_enabled = false,
+  $class_defaults = {},
   $firewall_label = 'firewall',
   $firewall_enabled = false,
+  $firewall_defaults = {},
   $firewall_pre_label = 'firewall_pre',
   $firewall_pre_enabled = false,
+  $firewall_pre_defaults = {},
   $firewall_post_label = 'firewall_post',
   $firewall_post_enabled = false,
+  $firewall_post_defaults = {},
 """
 
 for puppet_type in puppet_types:
@@ -48,17 +52,20 @@ for puppet_type in puppet_types:
 hieratic_class += """
   if($class_enabled or $global_enable) {
       $class_config = hiera_hash("${prefix}${class_label}", {})
-      create_resources('class', $class_config)
+      create_resources('class', $class_config, $class_defaults)
   }
 
   class { 'hieratic::firewall':
-    global_enable         => global_enable,
-    firewall_label        => "${prefix}${firewall_label}",
-    firewall_enabled      => $firewall_enabled,
-    firewall_pre_label    => "${prefix}${firewall_pre_label}",
-    firewall_pre_enabled  => $firewall_pre_enabled,
-    firewall_post_label   => "${prefix}${firewall_post_label}",
-    firewall_post_enabled => $firewall_post_enabled,
+    global_enable          => global_enable,
+    firewall_label         => "${prefix}${firewall_label}",
+    firewall_enabled       => $firewall_enabled,
+    firewall_defaults      => $firewall_defaults,
+    firewall_pre_label     => "${prefix}${firewall_pre_label}",
+    firewall_pre_enabled   => $firewall_pre_enabled,
+    firewall_pre_defaults  => $firewall_pre_defaults,
+    firewall_post_label    => "${prefix}${firewall_post_label}",
+    firewall_post_enabled  => $firewall_post_enabled,
+    firewall_post_defaults => $firewall_post_defaults,
   }
 
 }"""
