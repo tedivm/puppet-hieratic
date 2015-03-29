@@ -369,10 +369,5 @@ operating system.
 
 ## Development
 
-This module uses a generator to build the code to support all of the resource
-types. If you're looking to add a new resource type simply open a pull request
-adding it to [this file](https://github.com/tedivm/puppet-hieratic/blob/master/resources/typelist.txt)
-and updating the [supported resources list]((#supported-resources)). For
-resources that require customization (such as the firewall module) you should
-add the code into a separate class and then include it in the
-generator](https://github.com/tedivm/puppet-hieratic/blob/master/src/generate.py#L48).
+Contributions are always welcome. Please read the [Contributing Guide](CONTRIBUTING.md)
+to get started.
