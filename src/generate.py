@@ -51,8 +51,13 @@ for puppet_type in puppet_types:
 
 hieratic_class += """
   if($class_enabled or $global_enable) {
-      $class_config = hiera_hash("${prefix}${class_label}", {})
-      create_resources('class', $class_config, $class_defaults)
+
+      $class_config =
+        hiera_hash("${prefix}${class_label}", {})
+
+      create_resources('class',
+        $class_config,
+          $class_defaults)
   }
 
   class { 'hieratic::firewall':
