@@ -1,8 +1,12 @@
-##2015-03-25 - Release 0.5.3
+##2015-??-?? - Release 0.5.3
 
 ### Summary
 
-This release adds support for twelve modules and has improved documentation.
+### Features
+
+* The new `prefix` option adds a string in front of all labels in hiera. This
+  allows for overridable namespaces on hieratic.
+* This release adds support for twelve modules and has improved documentation.
 
 ### New Modules
 

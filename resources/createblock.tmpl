@@ -3,7 +3,7 @@
       or $$global_enable)) {
 
         $$${type_delimited}_config =
-          hiera_hash($$${type_delimited}_label, {})
+          hiera_hash("$${prefix}$${${type_delimited}_label}", {})
 
         create_resources('$type',
           $$${type_delimited}_config)
