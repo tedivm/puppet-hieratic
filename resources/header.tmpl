@@ -4,18 +4,25 @@
 #
 # === Parameters
 #
-# [*global_enable*]
-#   Defaults to true. With this on all resources are exposed through Hiera.
-#   For granular control set this to false and manually enable specific resource
-#   types.
+#  [*global_enable*]
+#    Defaults to true. With this on all resources are exposed through Hiera.
+#    For granular control set this to false and manually enable specific resource
+#    types.
 #
-# [*TYPE_enable*]
-#   Defaults to true. With this on all resources are exposed through Hiera.
+#  [*prefix*]
+#    Defaults to ''. This string gets added to all of the various `TYPE_label`
+#    keys in hiera.
 #
-# [*TYPE_label*]
-#   Defaults to the name of the type. This defines the top level hiera variable
-#   name to use when defining values of this type.
+#  [*TYPE_enable*]
+#    Defaults to true. With this on all resources are exposed through Hiera.
 #
+#  [*TYPE_label*]
+#    Defaults to the name of the type. This defines the top level hiera variable
+#    name to use when defining values of this type.
+#
+#  [*TYPE_defaults*]
+#    Defaults to and empty array. This allows default values to be set for each
+#    resource type.
 #
 # === Examples
 #

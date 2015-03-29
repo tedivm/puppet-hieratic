@@ -359,7 +359,7 @@ The only public facing class is "hieratic".
 
 * [*TYPE_defaults*]
     Defaults to and empty array. This allows default values to be set for each
-    resrouce type.
+    resource type.
 
 
 ## Limitations
