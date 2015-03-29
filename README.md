@@ -13,7 +13,9 @@
     * [Define Resources in Hiera](#define-resources-in-hiera)
     * [Using Hierarchies with Hiera and Hieratic](#using-hierarchies-with-hiera-and-hieratic)
     * [Differences Between Hieratic and Automatic Parameter Lookup](#differences-between-hieratic-and-automatic-parameter-lookup)
+    * [Automatic Parameter Lookup Compatibility](#automatic-parameter-lookup-compatibility)
     * [Change the Labels (or names) of Hiera Resources](#change-the-labels-or-names-of-hiera-resources)
+    * [Setting Default Values for Resources](#setting-default-values-for-resources)
     * [Enabling Some Resources and not Others](#enabling-some-resources-and-not-others)
     * [Defining Firewall Rules](#defining_firewall_rules)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -89,6 +91,12 @@ include hieratic
 ```
 
 At this point you can move away manifests and over to Hiera.
+
+If you want to add custom options you can include Hieratic as a class.
+
+```puppet
+class {'hieratic':}
+```
 
 ## Usage
 
@@ -195,6 +203,30 @@ system has a [severe limitation](https://docs.puppetlabs.com/hiera/1/puppet.html
 in that it can not merge values from multiple hierarchy levels- you will only
 get the highest priority value and nothing else.
 
+
+### Automatic Parameter Lookup Compatibility
+
+When using Hieratic there is no reason to use APL, and it can in the default
+configuration cause some potential issues.
+
+If APL is a requirement then use the `prefix` option in `hieratic` to namespace
+the hieratic objects. This will prevent any overlap in names between APL and
+Hieratic keys.
+
+```puppet
+class { 'hieratic':
+  prefix => 'hieratic_',
+}
+```
+
+Alternatively APL can be disabled in the puppet master's `puppet.conf` file.
+
+```ini
+[master]
+data_binding_terminus = none
+```
+
+
 ### Change the Labels (or names) of Hiera Resources
 
 Each resource type has an associated label parameter that can be used to change
@@ -219,6 +251,23 @@ packages:
   ethstatus: {}
   iptraf: {}
 ```
+
+
+### Setting Default Values for Resources
+
+Hieratic allows you to override the default values of any resource on a global
+level.
+
+To set a default shell for all hieratic created users.-
+```puppet
+class { 'hieratic':
+  user_defaults => {
+    'shell' => '/bin/zsh'
+  },
+}
+```
+
+
 
 ### Enabling Some Resources and Not Others
 
@@ -297,12 +346,21 @@ The only public facing class is "hieratic".
     For granular control set this to false and manually enable specific resource
     types.
 
+* [*prefix*]
+    Defaults to ''. This string gets added to all of the various `TYPE_label`
+    keys in hiera.
+
 * [*TYPE_enable*]
     Defaults to true. With this on all resources are exposed through Hiera.
 
 * [*TYPE_label*]
     Defaults to the name of the type. This defines the top level hiera variable
     name to use when defining values of this type.
+
+* [*TYPE_defaults*]
+    Defaults to and empty array. This allows default values to be set for each
+    resrouce type.
+
 
 ## Limitations
 
