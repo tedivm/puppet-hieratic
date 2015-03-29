@@ -6,8 +6,8 @@
 #
 #  [*global_enable*]
 #    Defaults to true. With this on all resources are exposed through Hiera.
-#    For granular control set this to false and manually enable specific resource
-#    types.
+#    For granular control set this to false and manually enable specific
+#    resource types.
 #
 #  [*prefix*]
 #    Defaults to ''. This string gets added to all of the various `TYPE_label`
