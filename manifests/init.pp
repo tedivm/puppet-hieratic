@@ -56,6 +56,10 @@ class hieratic (
   $firewall_post_label = 'firewall_post',
   $firewall_post_enabled = false,
   $firewall_post_defaults = {},
+  $class_label =
+    'class',
+  $class_defaults = {},
+  $class_enabled = false,
   $acl_label =
     'acl',
   $acl_defaults = {},
@@ -120,10 +124,6 @@ class hieratic (
     'augeas',
   $augeas_defaults = {},
   $augeas_enabled = false,
-  $class_label =
-    'class',
-  $class_defaults = {},
-  $class_enabled = false,
   $computers_label =
     'computers',
   $computers_defaults = {},
@@ -628,18 +628,6 @@ class hieratic (
 
         create_resources('augeas',
           $augeas_config)
-  }
-
-  if(defined('class')
-    and ($class_enabled
-      or $global_enable)) {
-
-        $class_config =
-          hiera_hash("${prefix}${class_label}",
-            $class_defaults)
-
-        create_resources('class',
-          $class_config)
   }
 
   if(defined('computers')
@@ -1579,6 +1567,15 @@ class hieratic (
   }
 
 
+
+  if($class_enabled or $global_enable) {
+    $class_config =
+      hiera_hash("${prefix}${class_label}",
+        $class_defaults)
+
+    create_resources('class',
+      $class_config)
+  }
 
   class { 'hieratic::firewall':
     global_enable          => $global_enable,

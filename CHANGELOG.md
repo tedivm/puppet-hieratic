@@ -1,4 +1,12 @@
-##2015-03-29 - Release 0.6.0
+## 2015-04-01 - Release 0.6.1
+
+### Summary
+
+This release changes the way classes are created to work around "defined"
+issues.
+
+
+## 2015-03-29 - Release 0.6.0
 
 ### Summary
 
@@ -26,7 +34,7 @@
 
 
 
-##2015-03-22 - Release 0.5.2
+## 2015-03-22 - Release 0.5.2
 
 ### Summary
 
